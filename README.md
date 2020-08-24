@@ -12,7 +12,8 @@
 This repo provides a library to do the basic CRUD operations in addition to grouping and sorting on an SQL database
  
 <h2 id="Started">Getting Started</h2>
-In order to install, open the command prompt and type:
+In order to install,open the command prompt and type ✌️:
+
 ```
 pip install sql_database_service
 ```
