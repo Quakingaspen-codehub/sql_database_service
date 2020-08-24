@@ -5,7 +5,6 @@
 # sql-database-service
 [Introduction](#Introduction)\
 [Getting Started](#Started)\
-[Example](#Example)\
 [Contributors](#Contributors)\
 [License](#License)
 <h2 id="Introduction">Introduction</h2>
@@ -18,9 +17,7 @@ In order to install,open the command prompt and type ✌️:
 pip install sql_database_service
 ```
 
-<h2 id="Example">Example</h2>
 
-The following directory [Example](https://github.com/Quakingaspen-codehub/sql_database_service/blob/master/Example.ipynb)
 
 
 <h2 id="">Contributors</h2>
