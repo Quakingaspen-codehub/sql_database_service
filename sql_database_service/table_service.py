@@ -62,33 +62,36 @@ class TableService:
         return self, qs.data > 0
 
     @QueryStatus.get_query_status
-    def create(self, new_record):
+    def create(self, new_record, with_commit=True):
         """ Create a new record
             new_record: is an object of the model type
         """
 
         self.database.session.add(new_record)
-        self.commit()
+        if with_commit:
+            self.commit()
         return self, None
 
     @QueryStatus.get_query_status
-    def update(self, id_, updated_record):
+    def update(self, _id, updated_record, with_commit=True):
         """ Update an existing record
             updated_record: is a dictionary
         """
 
-        query = self.query(self.table.id == id_)
+        query = self.query(self.table.id == _id)
         query.update(updated_record)
-        self.commit()
+        if with_commit:
+            self.commit()
         return self, None
 
     @QueryStatus.get_query_status
-    def delete(self, id_):
+    def delete(self, _id, with_commit=True):
         """ Delete an existing record """
 
-        qs = self.read(self.table.id == id_)
+        qs = self.read(self.table.id == _id)
         self.database.session.delete(qs.data)
-        self.commit()
+        if with_commit:
+            self.commit()
         return self, None
 
     def commit(self):
