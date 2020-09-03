@@ -1,3 +1,4 @@
+import math
 import time
 from functools import wraps
 from sqlalchemy import desc
@@ -35,3 +36,4 @@ class RecordsPage:
         self.page_records = page_records
         self.per_page = per_page
         self.current_page = current_page
+        self.num_pages = math.ceil(num_records / per_page) if per_page else None
