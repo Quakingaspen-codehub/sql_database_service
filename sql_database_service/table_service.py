@@ -27,7 +27,12 @@ class TableService:
         # Ordering
         if len(order_by) > 0:
             req_col = order_by['column'] if order_by['ascending'] else desc(order_by['column'])
-            query = query.order_by(req_col)
+
+            if 'nulls_last' in order_by and order_by['nulls_last'] is True:
+                query = query.order_by(case([(getattr(self.table, order_by['column']).is_(None), 1)],
+                                            else_=0), req_col)
+            else:
+                query = query.order_by(req_col)
 
         return query
 
