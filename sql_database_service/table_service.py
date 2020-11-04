@@ -1,5 +1,5 @@
 from . import QueryStatus
-from sqlalchemy import desc
+from sqlalchemy import desc, case
 
 
 class TableService:
