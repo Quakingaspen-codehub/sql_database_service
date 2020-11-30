@@ -3,10 +3,11 @@ from sqlalchemy import desc, case
 
 
 class TableService:
-    def __init__(self, database, table=None, per_page=10):
+    def __init__(self, database, table=None, per_page=10, with_view=None):
         self.database = database
         self.table = table
         self.per_page = per_page
+        self.with_view = with_view
 
     def query(self, row_filter=None, column_filter=list(), group_by=None, order_by=dict()):
 
@@ -14,6 +15,7 @@ class TableService:
 
         # Rows filtering
         if row_filter is not None:
+            row_filter = self.add_view(row_filter)
             query = query.filter(row_filter)
 
         # Columns filtering
@@ -56,6 +58,7 @@ class TableService:
     @QueryStatus.get_query_status
     def count(self, row_filter=None, column_filter=list()):
         """ Return number of records per query """
+
         query = self.query(row_filter, column_filter)
         return self, query.count()
 
@@ -107,3 +110,7 @@ class TableService:
             self.database.session.rollback()
             raise e
 
+    def add_view(self, row_filter):
+        if self.with_view is not None:
+            return row_filter & self.with_view if row_filter is not None else self.with_view
+        return self.with_view
