@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name="sql-database-service",
-    version="0.0.10",
+    version="0.0.11",
     author="Quaking Aspen",
     author_email="info@quakingaspen.net",
     license='MIT',

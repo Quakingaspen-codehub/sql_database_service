@@ -113,4 +113,4 @@ class TableService:
     def add_view(self, row_filter):
         if self.with_view is not None:
             return row_filter & self.with_view if row_filter is not None else self.with_view
-        return self.with_view
+        return row_filter
